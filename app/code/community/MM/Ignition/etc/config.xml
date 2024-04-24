@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MM_Ignition>
+            <version>1.0.0</version>
+        </MM_Ignition>
+    </modules>
+    <global>
+        <helpers>
+            <ignition>
+                <class>MM_Ignition_Helper</class>
+            </ignition>
+        </helpers>
+        <events>
+            <mage_print_exception_before>
+                <observers>
+                    <ignition>
+                        <class>MM_Ignition_Model_Observer</class>
+                        <method>handlePrintExceptionBefore</method>
+                    </ignition>
+                </observers>
+            </mage_print_exception_before>
+        </events>
+    </global>
+</config>
