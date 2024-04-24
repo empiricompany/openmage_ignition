@@ -12,6 +12,14 @@
             </ignition>
         </helpers>
         <events>
+            <core_app_init_before>
+                <observers>
+                    <ignition>
+                        <class>MM_Ignition_Model_Observer</class>
+                        <method>handleAppInitBefore</method>
+                    </ignition>
+                </observers>
+            </core_app_init_before>
             <mage_print_exception_before>
                 <observers>
                     <ignition>
