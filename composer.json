@@ -13,6 +13,9 @@
       "php": "^8.0",
       "magento-hackathon/magento-composer-installer": "*",
       "spatie/ignition": "*"
-    }
+    },
+    "repositories": [
+      { "type": "vcs", "url": "git://github.com/empiricompany/openmage_ignition.git"}
+    ]
   }
   
