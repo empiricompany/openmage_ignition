@@ -2,7 +2,7 @@
 <config>
     <modules>
         <MM_Ignition>
-            <active>false</active>
+            <active>true</active>
             <codePool>community</codePool>
         </MM_Ignition>
     </modules>
