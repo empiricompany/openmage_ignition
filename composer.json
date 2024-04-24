@@ -10,12 +10,10 @@
     ],
     "homepage": "https://github.com/empiricompany/openmage_ignition",
     "require": {
-      "php": "^8.0",
-      "magento-hackathon/magento-composer-installer": "*",
-      "spatie/ignition": "*"
-    },
-    "repositories": [
-      { "type": "vcs", "url": "git://github.com/empiricompany/openmage_ignition.git"}
-    ]
+        "php": "^8.0",
+        "magento-hackathon/magento-composer-installer": "*",
+        "spatie/ignition": "*",
+        "laravel/serializable-closure": "^1.3"
+    }
   }
   
