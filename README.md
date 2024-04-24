@@ -1,0 +1,2 @@
+# OpenMage spatie-ignition integration
+
