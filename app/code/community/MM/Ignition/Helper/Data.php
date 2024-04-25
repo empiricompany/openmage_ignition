@@ -2,6 +2,7 @@
 class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const XML_PATH_ENABLED = 'dev/mm_ignition/enabled';
+    const XML_PATH_THEME = 'dev/mm_ignition/theme';
 
     /**
      * Check if Ignition should be printed
@@ -27,5 +28,14 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
     public function isEnabled()
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
+    }
+
+    /**
+     * Get the theme
+     * @return string
+     */
+    public function getTheme()
+    {
+        return Mage::getStoreConfig(self::XML_PATH_THEME);
     }
 }

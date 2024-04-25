@@ -39,6 +39,7 @@
         <dev>
             <mm_ignition>
                 <enabled>1</enabled>
+                <theme>auto</theme>
             </mm_ignition>
         </dev>
     </default>

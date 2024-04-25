@@ -64,13 +64,13 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
 
     /**
      * Get system config.
-     * @todo get settings from system config dev/mm_ignition/*
+     * 
      * @return array
      */
     protected function getSystemConfig()
     {
         return [
-            'theme' => 'auto',
+            'theme' => $this->getHelper()->getTheme() ?? 'auto',
         ];
     }
 
