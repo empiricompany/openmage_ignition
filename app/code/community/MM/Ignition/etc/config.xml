@@ -33,12 +33,34 @@
                     </mm_ignition>
                 </observers>
             </mage_print_exception_before>
+            <controller_front_init_routers>
+                <observers> 
+                    <mm_ignition>
+                        <class>MM_Ignition_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </mm_ignition> 
+                </observers>
+            </controller_front_init_routers>
         </events>
     </global>
+    <frontend>
+        <events>
+        </events>
+        <routers>
+            <ignition>
+                <use>ignition_router</use>
+                <args>
+                    <module>MM_Ignition</module>
+                    <frontName>_ignition</frontName>
+                </args>
+            </ignition>
+        </routers>
+	</frontend>
     <default>
         <dev>
             <mm_ignition>
                 <enabled>1</enabled>
+                <editor>clipboard</editor>
                 <theme>auto</theme>
             </mm_ignition>
         </dev>

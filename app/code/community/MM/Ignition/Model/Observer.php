@@ -12,7 +12,7 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
      * @return void
      */
     public function handleIgnitionRegister(Varien_Event_Observer $observer)
-    {
+    {        
         if (!$this->getHelper()->shouldPrintIgnition()) {
             return;
         }
@@ -63,13 +63,14 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
     }
 
     /**
-     * Get system config.
+     * Get settings from system config.
      * 
      * @return array
      */
     protected function getSystemConfig()
     {
         return [
+            'editor' => $this->getHelper()->getEditor() ?? 'vscode',
             'theme' => $this->getHelper()->getTheme() ?? 'auto',
         ];
     }
