@@ -1,9 +1,31 @@
 <?php
-class MM_Ignition_Helper extends Mage_Core_Helper_Abstract
+class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    public function getIgnitionConfig(): array
+    const XML_PATH_ENABLED = 'dev/mm_ignition/enabled';
+
+    /**
+     * Check if Ignition should be printed
+     * only if Ignition is enabled and developer mode is on
+     * @return bool
+     */
+    public function shouldPrintIgnition()
     {
-        $config = new Spatie\Ignition\Config\IgnitionConfig();
-        return $config->toArray();
+        if (!$this->isEnabled()) {
+            return false;
+        }
+        if (!Mage::getIsDeveloperMode()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if Ignition is enabled
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
     }
 }

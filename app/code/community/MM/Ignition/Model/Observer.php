@@ -1,25 +1,86 @@
 <?php
+
+use Spatie\Ignition\Config\IgnitionConfig;
+use Spatie\Ignition\Ignition;
+
 class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
 {
-    public function handleAppInitBefore(Varien_Event_Observer $observer)
+    /**
+     * Register Ignition error handler.
+     *
+     * @param Varien_Event_Observer $observer
+     * @return void
+     */
+    public function handleIgnitionRegister(Varien_Event_Observer $observer)
     {
-        if( !Mage::getIsDeveloperMode() ) return;
+        if (!$this->getHelper()->shouldPrintIgnition()) {
+            return;
+        }
 
         $observer->getEvent()->getApp()->setErrorHandler(NULL);
-        \Spatie\Ignition\Ignition::make()
-                ->applicationPath(Mage::getBaseDir())
-                ->register();
+        $this->getIgnitionInstance()->register();
     }
     
-    public function handlePrintExceptionBefore(Varien_Event_Observer $observer)
+    /**
+     * Handle Exception with Ignition.
+     *
+     * @param Varien_Event_Observer $observer
+     * @return void
+     */
+    public function handleIgnitionException(Varien_Event_Observer $observer)
     {
-        if( !Mage::getIsDeveloperMode() ) return;
+        if (!$this->getHelper()->shouldPrintIgnition()) {
+            return;
+        }
 
         $e = $observer->getEvent()->getException();
-        \Spatie\Ignition\Ignition::make()
-            ->applicationPath(Mage::getBaseDir())
-            ->useDarkMode()
-            ->handleException($e);
+        $this->getIgnitionInstance()->handleException($e);
+
         die();
+    }
+
+    /**
+     * Get the Ignition instance.
+     *
+     * @return \Spatie\Ignition\Ignition
+     */
+    protected function getIgnitionInstance()
+    {
+        return Ignition::make()
+            ->setConfig($this->getIgnitionConfig())
+            ->applicationPath(Mage::getBaseDir());
+    }
+
+    /**
+     * Get the Ignition config.
+     *
+     * @return \Spatie\Ignition\Config\IgnitionConfig
+     */
+    protected function getIgnitionConfig()
+    {
+        return (new IgnitionConfig())
+            ->merge($this->getSystemConfig());
+    }
+
+    /**
+     * Get system config.
+     * @todo get settings from system config dev/mm_ignition/*
+     * @return array
+     */
+    protected function getSystemConfig()
+    {
+        return [
+            'theme' => 'auto',
+        ];
+    }
+
+    /**
+     * Get helper data.
+     *
+     * @return MM_Ignition_Helper_Data
+     */
+    protected function getHelper()
+    {
+        return Mage::helper('mm_ignition');
     }
 }

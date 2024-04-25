@@ -1,0 +1,26 @@
+<config>
+    <sections>
+        <dev translate="label" module="mm_ignition">
+            <groups>
+                <mm_ignition translate="label">
+                    <label>Ignition Settings</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                </mm_ignition>
+            </groups>
+        </dev>
+    </sections>
+</config>

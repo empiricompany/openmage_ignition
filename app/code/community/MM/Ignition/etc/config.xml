@@ -7,27 +7,39 @@
     </modules>
     <global>
         <helpers>
-            <ignition>
+            <mm_ignition>
                 <class>MM_Ignition_Helper</class>
-            </ignition>
+            </mm_ignition>
         </helpers>
+        <models>
+            <mm_ignition>
+                <class>MM_Ignition_Model</class>
+            </mm_ignition>
+        </models>
         <events>
-            <core_app_init_before>
+            <core_app_init_after>
                 <observers>
-                    <ignition>
+                    <mm_ignition>
                         <class>MM_Ignition_Model_Observer</class>
-                        <method>handleAppInitBefore</method>
-                    </ignition>
+                        <method>handleIgnitionRegister</method>
+                    </mm_ignition>
                 </observers>
-            </core_app_init_before>
+            </core_app_init_after>
             <mage_print_exception_before>
                 <observers>
-                    <ignition>
+                    <mm_ignition>
                         <class>MM_Ignition_Model_Observer</class>
-                        <method>handlePrintExceptionBefore</method>
-                    </ignition>
+                        <method>handleIgnitionException</method>
+                    </mm_ignition>
                 </observers>
             </mage_print_exception_before>
         </events>
     </global>
+    <default>
+        <dev>
+            <mm_ignition>
+                <enabled>1</enabled>
+            </mm_ignition>
+        </dev>
+    </default>
 </config>
