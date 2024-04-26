@@ -38,13 +38,16 @@ composer require empiricompany/openmage_ignition
 ---
 
 ## Ignition Settings
-![settings](https://github.com/empiricompany/openmage_ignition/assets/5071467/5e6048f0-2e54-46e4-a184-6838487423cd)
+In System/Advanced/Developer section
+
+![settings](https://github.com/empiricompany/openmage_ignition/assets/5071467/f2aaf8d5-1462-426a-b644-6878a6e00030)
+
 
 1. Enabled: Enable / Disable (enable)
 2. Default Editor: set default editor (clipboard)
 3. Default Theme: set default theme (auto)
 4. Save custom settings in session: Enable if you want custom settings foreach session, otherwise settings will be overrided (disabled)
-5. Enable OpenAI: Enable AI Generated Solution by OpenAI (warning: there is not cache implement yet, so all errors always call OpenAI api)
+5. Enable AI Generated Solution: Enable AI Generated Solution by OpenAI (⚠️ Warning: there is no cache implemention yet, so all errors always call OpenAI api)
 6. OpenAI API Key: OpenAI Api Key used to genrate solution
 
 Save settings in file `.ignition.json` is not supported yet, all new settings will be saved directly in system config or in session.
