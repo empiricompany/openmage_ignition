@@ -38,8 +38,11 @@ composer require empiricompany/openmage_ignition
 3. Default Theme: set default theme (auto)
 4. Save custom settings in session: Enable if you want custom settings foreach session, otherwise settings will be overrided (disabled)
 
+Save settings in file `.ignition.json` is not supported yet, all new settings will be saved directly in system config or in session.
+
 ---
 
 ## Screenshots
 
-![demo1](https://github.com/empiricompany/openmage_ignition/assets/5071467/467a3c69-8735-47fd-bdef-bad200b8ccb8)
+![demo1](https://github.com/empiricompany/openmage_ignition/assets/5071467/f7c18948-de37-4071-b8e7-e185112c89aa)
+
