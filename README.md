@@ -1,5 +1,10 @@
 # OpenMage spatie-ignition integration
 
+Integrate ignition error page https://github.com/spatie/ignition in OpenMage!
+
+Thanks to [@fballiano](https://github.com/fballiano) for his smart idea started here:
+https://github.com/OpenMage/magento-lts/pull/3954
+
 ## Installation
 
 ### Patch core files
