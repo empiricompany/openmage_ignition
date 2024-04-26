@@ -13,6 +13,9 @@
         "php": "^8.0",
         "magento-hackathon/magento-composer-installer": "*",
         "spatie/ignition": "*",
-        "laravel/serializable-closure": "^1.3"
+        "laravel/serializable-closure": "^1.3",
+        "openai-php/client": "^0.8.5",
+        "symfony/http-client": "^7.0",
+        "nyholm/psr7": "^1.8"
     }
   }
