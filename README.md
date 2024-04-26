@@ -48,7 +48,7 @@ In System/Advanced/Developer section
 3. Default Theme: set default theme (auto)
 4. Save custom settings in session: Enable if you want custom settings foreach session, otherwise settings will be overrided (disabled)
 5. Enable AI Generated Solution: Enable AI Generated Solution by OpenAI (⚠️ Warning: there is no cache implemention yet, so all errors always call OpenAI api)
-6. OpenAI API Key: OpenAI Api Key used to genrate solution
+6. OpenAI API Key: OpenAI Api Key used to generate solutions
 
 Save settings in file `.ignition.json` is not supported yet, all new settings will be saved directly in system config or in session.
 
