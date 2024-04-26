@@ -17,14 +17,14 @@
             </mm_ignition>
         </models>
         <events>
-            <core_app_init_after>
+            <core_app_init_environment_after>
                 <observers>
                     <mm_ignition>
                         <class>MM_Ignition_Model_Observer</class>
                         <method>handleIgnitionRegister</method>
                     </mm_ignition>
                 </observers>
-            </core_app_init_after>
+            </core_app_init_environment_after>
             <mage_print_exception_before>
                 <observers>
                     <mm_ignition>
