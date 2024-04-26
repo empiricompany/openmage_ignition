@@ -48,6 +48,28 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </override_config>
+                        <enable_openai>
+                            <label>Enable OpenAI</label>
+                            <comment>Enable OpenAI for code completion</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_openai>
+                        <openai_api_key>
+                            <label>OpenAI API Key</label>
+                            <comment>API key for OpenAI</comment>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_openai>1</enable_openai>
+                            </depends>
+                        </openai_api_key>
                     </fields>
                 </mm_ignition>
             </groups>

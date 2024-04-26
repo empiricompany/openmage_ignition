@@ -2,6 +2,7 @@
 
 use Spatie\Ignition\Config\IgnitionConfig;
 use Spatie\Ignition\Ignition;
+use Spatie\Ignition\Solutions\OpenAi\OpenAiSolutionProvider;
 
 class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
 {
@@ -46,9 +47,21 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
      */
     protected function getIgnitionInstance()
     {
-        return Ignition::make()
+        $_ignition = Ignition::make()
             ->setConfig($this->getIgnitionConfig())
             ->applicationPath(Mage::getBaseDir());
+
+        if ($this->getHelper()->isOpenAiEnabled() && !empty($this->getHelper()->getOpenAiKey())) {
+            $openAiKey = $this->getHelper()->getOpenAiKey();
+            $aiSolutionProvider = new OpenAiSolutionProvider($openAiKey);
+            $aiSolutionProvider->applicationType('OpenMage a fork of Magetno 1.9 (Generic Developer Documentation: https://devdocs-openmage.org/ NO mention Magento 1.x)');
+
+            $_ignition->addSolutionProviders([
+                $aiSolutionProvider,
+            ]);
+        }
+
+        return $_ignition;
     }
 
     /**

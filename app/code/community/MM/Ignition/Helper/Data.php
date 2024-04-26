@@ -5,6 +5,8 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_THEME = 'dev/mm_ignition/theme';
     const XML_PATH_EDITOR = 'dev/mm_ignition/editor';
     const XML_PATH_OVERRIDE_CONFIG = 'dev/mm_ignition/override_config';
+    const XML_PATH_OPENAI_ENABLED = 'dev/mm_ignition/enable_openai';
+    const XML_PATH_OPENAI_KEY = 'dev/mm_ignition/openai_api_key';
     
     /**
      * Allowed keys for settings
@@ -132,6 +134,24 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
         $ignitionConfig = Mage::getSingleton('core/session')->getIgnitionConfig() ?: [];
         $ignitionConfig[$key] = $value;
         Mage::getSingleton('core/session')->setIgnitionConfig($ignitionConfig);
+    }
+
+    /**
+     * Check if OpenAI is enabled
+     * @return bool
+     */
+    public function isOpenAiEnabled()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_OPENAI_ENABLED);
+    }
+
+    /**
+     * Get OpenAI key
+     * @return string
+     */
+    public function getOpenAiKey()
+    {
+        return Mage::getStoreConfig(self::XML_PATH_OPENAI_KEY);
     }
 
 }
