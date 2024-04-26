@@ -2,7 +2,6 @@
 
 class MM_Ignition_ConfigController extends Mage_Core_Controller_Front_Action
 {
-    const SETTINGS_ALLOWED_KEYS = ['theme', 'editor', 'hide_solutions'];
 
     public function updateAction()
     {
@@ -17,18 +16,14 @@ class MM_Ignition_ConfigController extends Mage_Core_Controller_Front_Action
 
     private function updateConfig($config)
     {
-        $config = array_intersect_key($config, array_flip(self::SETTINGS_ALLOWED_KEYS));
-
-        if (isset($config['theme']) && in_array($config['theme'], MM_Ignition_Model_System_Config_Source_Theme::OPTIONS)) {
-            Mage::getConfig()->saveConfig('dev/mm_ignition/theme', $config['theme']);
+        /** @var MM_Ignition_Helper_Data $_helper */
+        $_helper = Mage::helper('mm_ignition');
+        if (isset($config['theme'])) {
+            $_helper->setTheme($config['theme']);
         }
-        
-        $editorOptions = array_keys((MM_Ignition_Model_System_Config_Source_Editor::getOptions()));
-        if (isset($config['editor']) && in_array($config['editor'], $editorOptions)) {
-            Mage::getConfig()->saveConfig('dev/mm_ignition/editor', $config['editor']);
+        if (isset($config['editor'])) {
+            $_helper->setEditor($config['editor']);
         }
-        
-        Mage::getSingleton('core/session')->setIgnitionConfig($config);
         return true;
     }
 }

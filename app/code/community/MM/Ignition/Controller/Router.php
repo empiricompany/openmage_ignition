@@ -16,14 +16,16 @@ class MM_Ignition_Controller_Router extends Mage_Core_Controller_Varien_Router_S
     }
 
     /**
-    * Match the request in the form _ignition/update-config, skip store code prefix
+    * Match the request in the form "_ignition/update-config", skip store code prefix
     *
     * @param Mage_Core_Controller_Request_Http $request
     * @inheritDoc
     */
    public function match(Zend_Controller_Request_Http $request)
    {
-        if (!Mage::helper('mm_ignition')->shouldPrintIgnition()) {
+        /** @var MM_Ignition_Helper_Data $_helper */
+        $_helper = Mage::helper('mm_ignition');
+        if (!$_helper->shouldPrintIgnition()) {
             return false;
         }
 
@@ -38,6 +40,14 @@ class MM_Ignition_Controller_Router extends Mage_Core_Controller_Varien_Router_S
             $request->setControllerName($controller);
             $request->setActionName($action);
             $request->setControllerModule($realModule);
+            
+            // set params from JSON body
+            $rawBody = $request->getRawBody();
+            $jsonData = json_decode($rawBody, true);
+            if ($jsonData == null) {
+                return false;
+            }
+            $request->setParams($jsonData);
 
             $controllerClassName = $this->_validateControllerClassName($realModule, $controller);
             if (!$controllerClassName) {
