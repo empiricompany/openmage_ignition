@@ -16,9 +16,9 @@ self::dispatchEvent('mage_print_exception_before', ['exception' => $e, 'extra' =
 
 `App.php`
 ```php
-Mage::dispatchEvent('core_app_init_after', ['app' => $this]);
+Mage::dispatchEvent('core_app_init_environment_after', ['app' => $this]);
 ```
-![core_app_init_after](https://github.com/empiricompany/openmage_ignition/assets/5071467/51660c34-ed39-4090-9a0a-1037dfe1a26e)
+![core_app_init_environment_after](https://github.com/empiricompany/openmage_ignition/assets/5071467/78e66e1a-3e7c-41c1-996a-3df0982d3161)
 
 ---
 
