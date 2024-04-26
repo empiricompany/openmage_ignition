@@ -1,4 +1,6 @@
 # OpenMage spatie-ignition integration
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/empiricompany/openmage_ignition.svg?style=flat-square)](https://packagist.org/packages/empiricompany/openmage_ignition)
+[![Total Downloads](https://img.shields.io/packagist/dt/empiricompany/openmage_ignition.svg?style=flat-square)](https://packagist.org/packages/empiricompany/openmage_ignition)
 
 Integrate ignition error page https://github.com/spatie/ignition in OpenMage!
 
