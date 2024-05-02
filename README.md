@@ -60,7 +60,7 @@ Save settings in file `.ignition.json` is not supported yet, all new settings wi
 ## Screenshots
 
 ![demo1](https://github.com/empiricompany/openmage_ignition/assets/5071467/f7c18948-de37-4071-b8e7-e185112c89aa)
-
-![idemo2](https://github.com/empiricompany/openmage_ignition/assets/5071467/44e34638-5de6-406a-abbc-13d882a8f3e4)
+![demo2](https://github.com/empiricompany/openmage_ignition/assets/5071467/7aa46293-4876-4e45-b1fa-d77143d570c0)
+![idemo3](https://github.com/empiricompany/openmage_ignition/assets/5071467/44e34638-5de6-406a-abbc-13d882a8f3e4)
 
 
