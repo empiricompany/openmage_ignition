@@ -17,22 +17,30 @@
             </mm_ignition>
         </models>
         <events>
-            <core_app_init_environment_after>
+            <controller_front_init_before>
                 <observers>
                     <mm_ignition>
                         <class>MM_Ignition_Model_Observer</class>
                         <method>handleIgnitionRegister</method>
                     </mm_ignition>
                 </observers>
-            </core_app_init_environment_after>
-            <mage_print_exception_before>
+            </controller_front_init_before>
+            <mage_run_exception>
                 <observers>
                     <mm_ignition>
                         <class>MM_Ignition_Model_Observer</class>
                         <method>handleIgnitionException</method>
                     </mm_ignition>
                 </observers>
-            </mage_print_exception_before>
+            </mage_run_exception>
+            <mage_run_installed_exception>
+                <observers>
+                    <mm_ignition>
+                        <class>MM_Ignition_Model_Observer</class>
+                        <method>handleIgnitionException</method>
+                    </mm_ignition>
+                </observers>
+            </mage_run_installed_exception>
             <controller_front_init_routers>
                 <observers> 
                     <mm_ignition>

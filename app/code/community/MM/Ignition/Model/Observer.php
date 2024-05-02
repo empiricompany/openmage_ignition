@@ -18,7 +18,7 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
             return;
         }
 
-        $observer->getEvent()->getApp()->setErrorHandler(NULL);
+        Mage::app()->setErrorHandler(NULL);
         $this->getIgnitionInstance()->register();
     }
     

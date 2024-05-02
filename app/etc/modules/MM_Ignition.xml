@@ -4,6 +4,9 @@
         <MM_Ignition>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Core />
+            </depends>
         </MM_Ignition>
     </modules>
 </config>
