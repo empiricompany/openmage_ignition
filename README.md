@@ -48,8 +48,7 @@ composer require empiricompany/openmage_ignition
 ## Ignition Settings
 In System/Advanced/Developer section
 
-![settings](https://github.com/empiricompany/openmage_ignition/assets/5071467/f2aaf8d5-1462-426a-b644-6878a6e00030)
-
+![settings](https://github.com/empiricompany/openmage_ignition/assets/5071467/d101ac76-92c2-40b3-8dcd-67efa9d1779c)
 
 1. Enabled: Enable / Disable (enable)
 2. Default Editor: set default editor (clipboard)
@@ -57,6 +56,9 @@ In System/Advanced/Developer section
 4. Save custom settings in session: Enable if you want custom settings foreach session, otherwise settings will be overrided (disabled)
 5. Enable AI Generated Solution: Enable AI Generated Solution by OpenAI (⚠️ Warning: there is no cache implemention yet, so all errors always call OpenAI api)
 6. OpenAI API Key: OpenAI Api Key used to generate solutions
+7. Enable Flare: Enable error tracking with Flare
+8. Flare API Key: Flare Pai Key of project
+9. Anonymize IP: anonymize IP sended to Falre
 
 Save settings in file `.ignition.json` is not supported yet, all new settings will be saved directly in system config or in session.
 
@@ -67,5 +69,8 @@ Save settings in file `.ignition.json` is not supported yet, all new settings wi
 ![demo1](https://github.com/empiricompany/openmage_ignition/assets/5071467/f7c18948-de37-4071-b8e7-e185112c89aa)
 ![demo2](https://github.com/empiricompany/openmage_ignition/assets/5071467/7aa46293-4876-4e45-b1fa-d77143d570c0)
 ![idemo3](https://github.com/empiricompany/openmage_ignition/assets/5071467/44e34638-5de6-406a-abbc-13d882a8f3e4)
+
+![flare](https://github.com/empiricompany/openmage_ignition/assets/5071467/c5399489-7bc0-466b-a0fd-05fb7411780f)
+
 
 
