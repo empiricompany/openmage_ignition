@@ -57,7 +57,7 @@ In System/Advanced/Developer section
 5. Enable AI Generated Solution: Enable AI Generated Solution by OpenAI (⚠️ Warning: there is no cache implemention yet, so all errors always call OpenAI api)
 6. OpenAI API Key: OpenAI Api Key used to generate solutions
 7. Enable Flare: Enable error tracking with Flare
-8. Flare API Key: Flare Pai Key of project
+8. Flare API Key: Flare Api Key of project
 9. Anonymize IP: anonymize IP sended to Falre
 
 Save settings in file `.ignition.json` is not supported yet, all new settings will be saved directly in system config or in session.
