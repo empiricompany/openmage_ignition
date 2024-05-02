@@ -12,7 +12,7 @@ https://github.com/OpenMage/magento-lts/pull/3954
 ### Patch core files
 The module needs a new event `mage_run_installed_exception` to catch exceptions.
 
-Checkout the __'next' branch in development__ which contains the new event 
+Checkout OpenMage 21.0.0-beta1 from __'next' branch in development__ which contains the new event 
 
 ```cli
 composer require "openmage/magento-lts":"dev-next"
