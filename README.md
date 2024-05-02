@@ -16,7 +16,7 @@ Checkout the __'next' branch in development__ which contains the new event or ma
 
 - Add new event `app/Mage.php`
 ```php
-self::dispatchEvent('mage_run_installed_exception', ['exception' => $e, 'extra' => $extra]);
+self::dispatchEvent('mage_run_installed_exception', ['exception' => $e]);
 ```
 
 ![mage_run_installed_exception](https://github.com/empiricompany/openmage_ignition/assets/5071467/27c16ef9-f9ee-4402-a181-570099076db7)
