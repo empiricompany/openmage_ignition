@@ -12,9 +12,14 @@ https://github.com/OpenMage/magento-lts/pull/3954
 ### Patch core files
 The module needs a new event `mage_run_installed_exception` to catch exceptions.
 
-Checkout the __'next' branch in development__ which contains the new event or manually patch the file.
+Checkout the __'next' branch in development__ which contains the new event 
 
-- Add new event `app/Mage.php`
+```cli
+composer require "openmage/magento-lts":"dev-next"
+```
+
+Or manually patch the file  `app/Mage.php` adding new event
+
 ```php
 self::dispatchEvent('mage_run_installed_exception', ['exception' => $e]);
 ```
