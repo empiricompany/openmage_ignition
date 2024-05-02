@@ -7,6 +7,9 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_OVERRIDE_CONFIG = 'dev/mm_ignition/override_config';
     const XML_PATH_OPENAI_ENABLED = 'dev/mm_ignition/enable_openai';
     const XML_PATH_OPENAI_KEY = 'dev/mm_ignition/openai_api_key';
+    const XML_PATH_FLARE_ENABLED = 'dev/mm_ignition/enable_flare';
+    const XML_PATH_FLARE_API_KEY = 'dev/mm_ignition/flare_api_key';
+    const XML_PATH_FLARE_ANONYMIZE_IP = 'dev/mm_ignition/flare_anonymize_ip';
     
     /**
      * Allowed keys for settings
@@ -152,6 +155,33 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
     public function getOpenAiKey()
     {
         return Mage::getStoreConfig(self::XML_PATH_OPENAI_KEY);
+    }
+
+    /**
+     * Check if Flare is enabled
+     * @return bool
+     */
+    public function isFlareEnabled()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ENABLED);
+    }
+
+    /**
+     * Check if Flare should anonymize IP
+     * @return bool
+     */
+    public function shouldAnonymizeIp()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ANONYMIZE_IP);
+    }
+
+    /**
+     * Get Flare API key
+     * @return string
+     */
+    public function getFlareApiKey()
+    {
+        return Mage::getStoreConfig(self::XML_PATH_FLARE_API_KEY);
     }
 
 }

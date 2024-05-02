@@ -3,6 +3,7 @@
 use Spatie\Ignition\Config\IgnitionConfig;
 use Spatie\Ignition\Ignition;
 use Spatie\Ignition\Solutions\OpenAi\OpenAiSolutionProvider;
+use Spatie\FlareClient\Flare;
 
 class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
 {
@@ -14,7 +15,7 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
      */
     public function handleIgnitionRegister(Varien_Event_Observer $observer)
     {        
-        if (!$this->getHelper()->shouldPrintIgnition()) {
+        if (!$this->getHelper()->shouldPrintIgnition() && !$this->getHelper()->isFlareEnabled()) {
             return;
         }
 
@@ -30,14 +31,16 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
      */
     public function handleIgnitionException(Varien_Event_Observer $observer)
     {
-        if (!$this->getHelper()->shouldPrintIgnition()) {
+        if (!$this->getHelper()->shouldPrintIgnition() && !$this->getHelper()->isFlareEnabled()) {
             return;
         }
 
         $e = $observer->getEvent()->getException();
         $this->getIgnitionInstance()->handleException($e);
 
-        die();
+        if ($this->getHelper()->shouldPrintIgnition()) {
+            die();
+        }
     }
 
     /**
@@ -48,6 +51,7 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
     protected function getIgnitionInstance()
     {
         $_ignition = Ignition::make()
+            ->runningInProductionEnvironment(!Mage::getIsDeveloperMode())
             ->setConfig($this->getIgnitionConfig())
             ->applicationPath(Mage::getBaseDir());
 
@@ -59,6 +63,15 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
             $_ignition->addSolutionProviders([
                 $aiSolutionProvider,
             ]);
+        }
+
+        if ($this->getHelper()->isFlareEnabled() && !empty($this->getHelper()->getFlareApiKey())) {
+            $_ignition->sendToFlare($this->getHelper()->getFlareApiKey());
+            if ($this->getHelper()->shouldAnonymizeIp()) {
+                $_ignition->configureFlare(function(Flare  $flare) {
+                    $flare->anonymizeIp();
+                });
+            }
         }
 
         return $_ignition;

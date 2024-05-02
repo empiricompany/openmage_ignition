@@ -70,6 +70,41 @@
                                 <enable_openai>1</enable_openai>
                             </depends>
                         </openai_api_key>
+                        <enable_flare>
+                            <label>Enable Flare</label>
+                            <comment>Enable Flare Error Tracking</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_flare>
+                        <flare_api_key>
+                            <label>Flare API Key</label>
+                            <comment>API key for Flare provided when you created a new project</comment>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_flare>1</enable_flare>
+                            </depends>
+                        </flare_api_key>
+                        <flare_anonymize_ip>
+                            <label>Anonymize IP</label>
+                            <comment>Enable to anonymize IP addresses sent to Flare</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_flare>1</enable_flare>
+                            </depends>
+                        </flare_anonymize_ip>
                     </fields>
                 </mm_ignition>
             </groups>
