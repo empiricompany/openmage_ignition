@@ -10,22 +10,25 @@ https://github.com/OpenMage/magento-lts/pull/3954
 ## Installation
 
 ### Patch core files
-There is an open PR https://github.com/OpenMage/magento-lts/pull/3957 on __next branch__
+The module needs a new event `mage_run_installed_exception` to catch exceptions.
 
-You have to patch Mage.php and App.php adding this new events:
+Checkout the __'next' branch in development__ which contains the new event or manually patch the file.
 
-`Mage.php`
+- Add new event `app/Mage.php`
 ```php
-self::dispatchEvent('mage_print_exception_before', ['exception' => $e, 'extra' => $extra]);
+self::dispatchEvent('mage_run_installed_exception', ['exception' => $e, 'extra' => $extra]);
 ```
 
-![mage_print_exception_before](https://github.com/empiricompany/openmage_ignition/assets/5071467/6597b7ad-740a-4a7c-988a-fc96b7bdcf38)
+![mage_run_installed_exception](https://github.com/empiricompany/openmage_ignition/assets/5071467/27c16ef9-f9ee-4402-a181-570099076db7)
 
-`App.php`
-```php
-Mage::dispatchEvent('core_app_init_environment_after', ['app' => $this]);
+- Or apply a patch from this PR:
+```json
+"patches": {
+    "openmage/magento-lts": {
+        "Add mage_run_installed_exception event when uncatched exception is thrown #3613": "https://github.com/OpenMage/magento-lts/pull/3613.patch"
+    }
+}
 ```
-![core_app_init_environment_after](https://github.com/empiricompany/openmage_ignition/assets/5071467/78e66e1a-3e7c-41c1-996a-3df0982d3161)
 
 ---
 
