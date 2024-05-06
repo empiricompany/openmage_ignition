@@ -20,7 +20,7 @@ class MM_Ignition_Model_Observer extends Mage_Core_Model_Observer
         }
 
         Mage::app()->setErrorHandler(NULL);
-        $this->getIgnitionInstance()->register();
+        $this->getIgnitionInstance()->register(error_reporting());
     }
     
     /**
