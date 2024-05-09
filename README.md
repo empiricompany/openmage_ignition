@@ -8,17 +8,17 @@ Thanks to [@fballiano](https://github.com/fballiano) for his smart idea started 
 https://github.com/OpenMage/magento-lts/pull/3954
 
 ## Installation
+The module needs a new event `mage_run_installed_exception` to catch exceptions introduced in OpenMage 20.7.0.
 
-### Patch core files
-The module needs a new event `mage_run_installed_exception` to catch exceptions.
-
-Checkout OpenMage 21.0.0-beta1 from __'next' branch in development__ which contains the new event 
+### Install composer package 
 
 ```cli
-composer require "openmage/magento-lts":"dev-next"
+composer require empiricompany/openmage_ignition
 ```
 
-Or manually patch the file  `app/Mage.php` adding new event
+---
+### Manually patch core files
+If you want to manually patch you need to add new event in the file  `app/Mage.php`
 
 ```php
 self::dispatchEvent('mage_run_installed_exception', ['exception' => $e]);
@@ -33,14 +33,6 @@ self::dispatchEvent('mage_run_installed_exception', ['exception' => $e]);
         "Add mage_run_installed_exception event when uncatched exception is thrown #3613": "https://github.com/OpenMage/magento-lts/pull/3613.patch"
     }
 }
-```
-
----
-
-### Install composer package 
-
-```cli
-composer require empiricompany/openmage_ignition
 ```
 
 ---
