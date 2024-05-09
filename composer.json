@@ -12,6 +12,7 @@
     "require": {
         "php": "^8.0",
         "magento-hackathon/magento-composer-installer": "*",
+        "openmage/magento-lts": "^20.7",
         "spatie/ignition": "*",
         "laravel/serializable-closure": "^1.3",
         "openai-php/client": "^0.8.5",
