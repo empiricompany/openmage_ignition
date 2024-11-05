@@ -10,7 +10,7 @@
     ],
     "homepage": "https://github.com/empiricompany/openmage_ignition",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|^8.1|^8.2|^8.3",
         "magento-hackathon/magento-composer-installer": "*",
         "openmage/magento-lts": "^20.7",
         "spatie/ignition": "*",
@@ -19,4 +19,4 @@
         "symfony/http-client": "^7.0",
         "nyholm/psr7": "^1.8"
     }
-  }
+}
