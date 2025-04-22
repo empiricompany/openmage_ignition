@@ -1,20 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 class MM_Ignition_ConfigController extends Mage_Core_Controller_Front_Action
 {
-
-    public function updateAction()
+    /**
+     * @throws Zend_Controller_Response_Exception
+     */
+    public function updateAction(): void
     {
-        $result = $this->updateConfig($this->getRequest()->getParams());
+        /** @var array<string> $params */
+        $params = $this->getRequest()->getParams();
+        $result = $this->updateConfig($params);
+        $resonse = $this->getResponse();
         if (!$result) {
-            $this->getResponse()->setHttpResponseCode(400);
+            $resonse->setHttpResponseCode(400);
         }
-        
-        $this->getResponse()->setHeader('Content-type', 'application/json');
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+
+        $resonse->setHeader('Content-type', 'application/json');
+        $resonse->setBody(Mage::helper('core')->jsonEncode($result));
     }
 
-    private function updateConfig($config)
+    /**
+     * @param array<string> $config
+     */
+    private function updateConfig(array $config): bool
     {
         /** @var MM_Ignition_Helper_Data $_helper */
         $_helper = Mage::helper('mm_ignition');
