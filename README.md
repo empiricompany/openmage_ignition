@@ -18,7 +18,7 @@ This module requires the `mage_run_installed_exception` event, introduced in **O
 
 ### Install via Composer
 ```bash
-composer require empiricompany/openmage_ignition
+composer require --dev empiricompany/openmage_ignition
 ```
 
 ---
