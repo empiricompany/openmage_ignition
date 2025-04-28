@@ -23,7 +23,7 @@ composer require empiricompany/openmage_ignition
 
 ---
 
-### Manual Core Patch (if needed)
+### Manual Core Patch (before v20.7.ß)
 If you prefer to manually patch OpenMage, add the following event dispatch inside `app/Mage.php`:
 
 ```php
