@@ -46,11 +46,20 @@ In System/Advanced/Developer section
 2. Default Editor: set default editor (clipboard)
 3. Default Theme: set default theme (auto)
 4. Save custom settings in session: Enable if you want custom settings foreach session, otherwise settings will be overrided (disabled)
-5. Enable AI Generated Solution: Enable AI Generated Solution by OpenAI (⚠️ Warning: there is no cache implemention yet, so all errors always call OpenAI api)
-6. OpenAI API Key: OpenAI Api Key used to generate solutions
-7. Enable Flare: Enable error tracking with Flare
-8. Flare API Key: Flare Api Key of project
-9. Anonymize IP: anonymize IP sended to Falre
+5. Enable AI Generated Solution: Enable AI Generated Solution by OpenAI
+
+    It requires the installation of the additional library
+
+    ```composer require openai-php/client```
+
+    https://github.com/empiricompany/openmage_ignition/pull/4/files/c5a6f95ccb470190227f807f7d3ca05df4431336#diff-70a2dfcf453f626db44001ac2d126f8d4f665c566c9c69ca0e186fdc56f8491f
+
+   ⚠️ Warning: there is no cache implemention yet, so all errors always call OpenAI api
+
+7. OpenAI API Key: OpenAI Api Key used to generate solutions
+8. Enable Flare: Enable error tracking with Flare
+9. Flare API Key: Flare Api Key of project
+10. Anonymize IP: anonymize IP sended to Falre
 
 Save settings in file `.ignition.json` is not supported yet, all new settings will be saved directly in system config or in session.
 
