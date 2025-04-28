@@ -1,30 +1,41 @@
 <?php
 
+declare(strict_types=1);
+
 use Spatie\Ignition\Config\IgnitionConfig;
+
 class MM_Ignition_Model_System_Config_Source_Editor
 {
     /**
      * Get available editor from Ignition config
      *
-     * @return array
+     * @return array<string, mixed>|bool|string|null
      */
-    public static function getOptions()
+    public static function getOptions(): array|bool|string|null
     {
-        $editorOptions = (new IgnitionConfig())->toArray()['editorOptions'];
-        return $editorOptions;
+        $options = (new IgnitionConfig())->toArray();
+        return $options['editorOptions'];
     }
 
     /**
      * Get available editor options
      *
-     * @return array
+     * @return array<array<string, string>>
      */
     public function toOptionArray()
     {
-        foreach ($this->getOptions() as $key => $value) {
+        $options = [];
+        $config = self::getOptions();
+
+        if (!is_iterable($config)) {
+            return $options;
+        }
+
+        /** @var array<string, array<string, string>> $config */
+        foreach ($config as $key => $value) {
             $options[] = [
                 'value' => $key,
-                'label' => $value['label']
+                'label' => $value['label'],
             ];
         }
         return $options;

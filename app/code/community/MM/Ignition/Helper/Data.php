@@ -1,33 +1,29 @@
 <?php
+
+declare(strict_types=1);
+
 class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    const XML_PATH_ENABLED = 'dev/mm_ignition/enabled';
-    const XML_PATH_THEME = 'dev/mm_ignition/theme';
-    const XML_PATH_EDITOR = 'dev/mm_ignition/editor';
-    const XML_PATH_OVERRIDE_CONFIG = 'dev/mm_ignition/override_config';
-    const XML_PATH_OPENAI_ENABLED = 'dev/mm_ignition/enable_openai';
-    const XML_PATH_OPENAI_KEY = 'dev/mm_ignition/openai_api_key';
-    const XML_PATH_FLARE_ENABLED = 'dev/mm_ignition/enable_flare';
-    const XML_PATH_FLARE_API_KEY = 'dev/mm_ignition/flare_api_key';
-    const XML_PATH_FLARE_ANONYMIZE_IP = 'dev/mm_ignition/flare_anonymize_ip';
-    
+    protected $_moduleName = 'MM_Ignition';
+
+    public const XML_PATH_ENABLED = 'dev/mm_ignition/enabled';
+    public const XML_PATH_THEME = 'dev/mm_ignition/theme';
+    public const XML_PATH_EDITOR = 'dev/mm_ignition/editor';
+    public const XML_PATH_OVERRIDE_CONFIG = 'dev/mm_ignition/override_config';
+
     /**
      * Allowed keys for settings
-     * @var array
      */
-    const SETTINGS_ALLOWED_KEYS = ['theme', 'editor', 'hide_solutions'];
+    public const SETTINGS_ALLOWED_KEYS = ['theme', 'editor', 'hide_solutions'];
 
     /**
      * Check if Ignition should be printed
-     * only if Ignition is enabled and developer mode is on
-     * @return bool
+     *
+     * Only if Ignition is enabled and developer mode is on
      */
-    public function shouldPrintIgnition()
+    public function shouldPrintIgnition(): bool
     {
-        if (!$this->isEnabled()) {
-            return false;
-        }
-        if (!Mage::getIsDeveloperMode()) {
+        if (!$this->isEnabled() || !Mage::getIsDeveloperMode()) {
             return false;
         }
 
@@ -36,27 +32,24 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Check if Ignition is enabled
-     * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
     }
 
     /**
      * Get theme preference
-     * @return string
      */
-    public function getTheme()
+    public function getTheme(): ?string
     {
         return $this->getSessionConfig('theme') ?: Mage::getStoreConfig(self::XML_PATH_THEME);
     }
 
     /**
      * Set theme preference
-     * @return string
      */
-    public function setTheme($theme)
+    public function setTheme(string $theme): bool
     {
         if (!in_array($theme, MM_Ignition_Model_System_Config_Source_Theme::OPTIONS)) {
             return false;
@@ -66,24 +59,28 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
             return true;
         }
         Mage::getConfig()->saveConfig(self::XML_PATH_THEME, $theme);
-    }    
+        return true;
+    }
 
     /**
      * Get editor preference
-     * @return string
      */
-    public function getEditor()
+    public function getEditor(): ?string
     {
         return $this->getSessionConfig('editor') ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
     }
 
     /**
      * Set editor preference
-     * @return string
      */
-    public function setEditor($editor)
+    public function setEditor(string $editor): bool
     {
-        $editorOptions = array_keys((MM_Ignition_Model_System_Config_Source_Editor::getOptions()));
+        $editorOptions = MM_Ignition_Model_System_Config_Source_Editor::getOptions();
+        if (!is_array($editorOptions)) {
+            return false;
+        }
+
+        $editorOptions = array_keys($editorOptions);
         if (!in_array($editor, $editorOptions)) {
             return false;
         }
@@ -92,23 +89,23 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
             return true;
         }
         Mage::getConfig()->saveConfig(self::XML_PATH_EDITOR, $editor);
+        return true;
     }
 
     /**
      * Check if config should be read from session
-     * @return bool
      */
-    public function shouldUseSessionConfig()
+    public function shouldUseSessionConfig(): bool
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_OVERRIDE_CONFIG);
     }
 
     /**
      * Read config from session
-     * @param $key string config key like (theme|editor)
+     * @param string $key config key like (theme|editor)
      * @return mixed
      */
-    public function getSessionConfig($key)
+    public function getSessionConfig(string $key)
     {
         if (!$this->shouldUseSessionConfig()) {
             return false;
@@ -122,66 +119,19 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Write config from session
-     * @param $key string config key like (theme|editor)
-     * @param $value string config value
-     * @return void
+     * @param string $key config key like (theme|editor)
+     * @param string $value config value
      */
-    public function setSessionConfig($key, $value)
+    public function setSessionConfig(string $key, string $value): void
     {
         if (!$this->shouldUseSessionConfig()) {
-            return false;
+            return;
         }
         if (!in_array($key, self::SETTINGS_ALLOWED_KEYS)) {
-            return false;
+            return;
         }
         $ignitionConfig = Mage::getSingleton('core/session')->getIgnitionConfig() ?: [];
         $ignitionConfig[$key] = $value;
         Mage::getSingleton('core/session')->setIgnitionConfig($ignitionConfig);
     }
-
-    /**
-     * Check if OpenAI is enabled
-     * @return bool
-     */
-    public function isOpenAiEnabled()
-    {
-        return Mage::getStoreConfigFlag(self::XML_PATH_OPENAI_ENABLED);
-    }
-
-    /**
-     * Get OpenAI key
-     * @return string
-     */
-    public function getOpenAiKey()
-    {
-        return Mage::getStoreConfig(self::XML_PATH_OPENAI_KEY);
-    }
-
-    /**
-     * Check if Flare is enabled
-     * @return bool
-     */
-    public function isFlareEnabled()
-    {
-        return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ENABLED);
-    }
-
-    /**
-     * Check if Flare should anonymize IP
-     * @return bool
-     */
-    public function shouldAnonymizeIp()
-    {
-        return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ANONYMIZE_IP);
-    }
-
-    /**
-     * Get Flare API key
-     * @return string
-     */
-    public function getFlareApiKey()
-    {
-        return Mage::getStoreConfig(self::XML_PATH_FLARE_API_KEY);
-    }
-
 }

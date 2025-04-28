@@ -2,7 +2,7 @@
 <config>
     <modules>
         <MM_Ignition>
-            <version>1.4.1</version>
+            <version>1.5.0</version>
         </MM_Ignition>
     </modules>
     <global>
@@ -20,24 +20,24 @@
             <controller_front_init_before>
                 <observers>
                     <mm_ignition>
-                        <class>MM_Ignition_Model_Observer</class>
-                        <method>handleIgnitionRegister</method>
+                        <class>mm_ignition/observer_handleIgnitionRegister</class>
+                        <method>execute</method>
                     </mm_ignition>
                 </observers>
             </controller_front_init_before>
             <mage_run_exception>
                 <observers>
                     <mm_ignition>
-                        <class>MM_Ignition_Model_Observer</class>
-                        <method>handleIgnitionException</method>
+                        <class>mm_ignition/observer_handleIgnitionException</class>
+                        <method>execute</method>
                     </mm_ignition>
                 </observers>
             </mage_run_exception>
             <mage_run_installed_exception>
                 <observers>
                     <mm_ignition>
-                        <class>MM_Ignition_Model_Observer</class>
-                        <method>handleIgnitionException</method>
+                        <class>mm_ignition/observer_handleIgnitionException</class>
+                        <method>execute</method>
                     </mm_ignition>
                 </observers>
             </mage_run_installed_exception>
