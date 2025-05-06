@@ -85,3 +85,6 @@ Saving settings in `.ignition.json` is currently **not supported** — all setti
 ---
 
 # 🚀 Enjoy a better error handling experience in OpenMage!
+
+
+![Alt](https://repobeats.axiom.co/api/embed/6173c59d6984565c974e9fe3212fae37cd0c9b55.svg "Repobeats analytics image")
