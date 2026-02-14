@@ -48,7 +48,8 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
     public function getTheme(): ?string
     {
         try {
-            return $this->getSessionConfig('theme') ?: Mage::getStoreConfig(self::XML_PATH_THEME);
+            $sessionConfig = $this->getSessionConfig('theme');
+            return $sessionConfig ?: Mage::getStoreConfig(self::XML_PATH_THEME);
         } catch (Mage_Core_Model_Store_Exception $e) {
             return null;
         }
@@ -76,7 +77,8 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
     public function getEditor(): ?string
     {
         try {
-            return $this->getSessionConfig('editor') ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
+            $sessionConfig = $this->getSessionConfig('editor');
+            return $sessionConfig ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
         } catch (Mage_Core_Model_Store_Exception $e) {
             return null;
         }
