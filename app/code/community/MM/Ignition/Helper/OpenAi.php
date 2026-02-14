@@ -20,7 +20,11 @@ class MM_Ignition_Helper_OpenAi extends Mage_Core_Helper_Abstract
             return false;
         }
 
-        return Mage::getStoreConfigFlag(self::XML_PATH_OPENAI_ENABLED);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_OPENAI_ENABLED);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -28,6 +32,10 @@ class MM_Ignition_Helper_OpenAi extends Mage_Core_Helper_Abstract
      */
     public function getOpenAiKey(): string
     {
-        return (string) Mage::getStoreConfig(self::XML_PATH_OPENAI_KEY);
+        try {
+            return (string) Mage::getStoreConfig(self::XML_PATH_OPENAI_KEY);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return '';
+        }
     }
 }
