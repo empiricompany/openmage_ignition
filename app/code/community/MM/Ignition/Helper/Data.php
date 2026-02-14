@@ -35,7 +35,11 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isEnabled(): bool
     {
-        return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -97,7 +101,11 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function shouldUseSessionConfig(): bool
     {
-        return Mage::getStoreConfigFlag(self::XML_PATH_OVERRIDE_CONFIG);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_OVERRIDE_CONFIG);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**
