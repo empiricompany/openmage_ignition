@@ -47,7 +47,11 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getTheme(): ?string
     {
-        return $this->getSessionConfig('theme') ?: Mage::getStoreConfig(self::XML_PATH_THEME);
+        try {
+            return $this->getSessionConfig('theme') ?: Mage::getStoreConfig(self::XML_PATH_THEME);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return null;
+        }
     }
 
     /**
@@ -71,7 +75,11 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getEditor(): ?string
     {
-        return $this->getSessionConfig('editor') ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
+        try {
+            return $this->getSessionConfig('editor') ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return null;
+        }
     }
 
     /**
