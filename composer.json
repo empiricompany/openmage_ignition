@@ -10,7 +10,7 @@
       "openmage"
     ],
     "require": {
-        "php": ">=8.0 <8.5",
+        "php": ">=8.0 <8.6",
         "composer-runtime-api": "^2.0",
         "magento-hackathon/magento-composer-installer": "*",
         "spatie/ignition": "^1.15.1"
