@@ -35,7 +35,11 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isEnabled(): bool
     {
-        return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -43,7 +47,12 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getTheme(): ?string
     {
-        return $this->getSessionConfig('theme') ?: Mage::getStoreConfig(self::XML_PATH_THEME);
+        try {
+            $sessionConfig = $this->getSessionConfig('theme');
+            return $sessionConfig ?: Mage::getStoreConfig(self::XML_PATH_THEME);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return null;
+        }
     }
 
     /**
@@ -67,7 +76,12 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getEditor(): ?string
     {
-        return $this->getSessionConfig('editor') ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
+        try {
+            $sessionConfig = $this->getSessionConfig('editor');
+            return $sessionConfig ?: Mage::getStoreConfig(self::XML_PATH_EDITOR);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return null;
+        }
     }
 
     /**
@@ -97,7 +111,11 @@ class MM_Ignition_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function shouldUseSessionConfig(): bool
     {
-        return Mage::getStoreConfigFlag(self::XML_PATH_OVERRIDE_CONFIG);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_OVERRIDE_CONFIG);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**

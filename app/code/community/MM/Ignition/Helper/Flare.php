@@ -16,7 +16,11 @@ class MM_Ignition_Helper_Flare extends Mage_Core_Helper_Abstract
      */
     public function isFlareEnabled(): bool
     {
-        return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ENABLED);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ENABLED);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -24,7 +28,11 @@ class MM_Ignition_Helper_Flare extends Mage_Core_Helper_Abstract
      */
     public function shouldAnonymizeIp(): bool
     {
-        return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ANONYMIZE_IP);
+        try {
+            return Mage::getStoreConfigFlag(self::XML_PATH_FLARE_ANONYMIZE_IP);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -32,6 +40,10 @@ class MM_Ignition_Helper_Flare extends Mage_Core_Helper_Abstract
      */
     public function getFlareApiKey(): string
     {
-        return (string) Mage::getStoreConfig(self::XML_PATH_FLARE_API_KEY);
+        try {
+            return (string) Mage::getStoreConfig(self::XML_PATH_FLARE_API_KEY);
+        } catch (Mage_Core_Model_Store_Exception $e) {
+            return '';
+        }
     }
 }
